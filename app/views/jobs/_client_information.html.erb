@@ -1,0 +1,49 @@
+<div class="col-md-4">
+  <div class="row">
+    <h3>Client Information</h3>
+  </div>
+
+  <div class="row">
+    <strong>Name: </strong><%= @job.user.name %>
+  </div>
+
+  <div class="row">
+    <strong>Email: </strong><%= @job.user.email %>
+  </div>
+
+  <div class="row">
+    <strong>Telephone: </strong><%= @job.user.telephone %>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="row">
+    <h3>Job Information</h3>
+  </div>
+
+  <div class="row" id="job_type">
+    <strong>Job Type: </strong><%= @job.job_type %> (<a href="javascript:;" id="edit_job">edit</a>)
+
+    <div id="job_type_form">
+      <%= form_for @job, url: {action: "manage_update"} do |f| %>
+        <div class="form-group">
+          <%= f.select :job_type, options_for_select(@job_types), {prompt: "Job Type"}, {class: "form-job-type form-control"} %>
+        </div>
+        <%= f.submit("Update", class: "btn text-center") %>
+      <% end %>
+    </div>
+    <p><strong>Time Spent: </strong><%= humanize(@job.total_time) %> </p> 
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="row">
+    <h3>Client Documents</h3>
+  </div>
+
+  <div class="row">
+    <% @job.client_attachments.each do |a| %>
+      <%= link_to a.attachment_file_name, a.attachment.url(:original, false) %><br>
+    <% end %>
+  </div>
+</div>

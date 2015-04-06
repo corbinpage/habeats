@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <div class="panel panel-consent">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="checkbox">
+              <label>
+                <%=check_box_tag 'consent-checkbox', "1", false%> I attest that I have read the above information in completeness and have no further questions.
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  $('#consent-checkbox').change(function(){
+    $.get("<%=update_consent_path(@consent.procedure_id, @consent.id)%>?consent_type=<%=controller.action_name%>&consent_val="+$(this).val(), function(data,status){
+      if(status == 'success'){
+        console.log(data)
+      }
+    })
+    $('#consent-checkbox').val($('#consent-checkbox').val() == "1" ? "0" : "1")
+  })
+  </script>
+</div>

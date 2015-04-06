@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<% step = controller.action_name %>
+
+<section class="small-section bg-light-gray">
+  <div class="container">
+    <div class="col-lg-12 text-center">
+      <h2 class="section-heading"><%= @consent.procedure.name %></h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class="panel panel-consent main-panel">
+          <div class="panel-heading text-center">
+            <h2 class="panel-title text-center"><%=step.capitalize%></h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <h3>Information</h3>
+                <p><%= @consent.procedure.procedure_detail.send(step+"_text")%></p> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <span class="fa-stack fa-2x pull-left">
+                  <a class="consent-button" href="<%= send('consent_'+previous_step(step)+'_path', @consent.procedure_id, @consent.id) %>">
+                    <i class="fa fa-arrow-circle-left fa-stack-2x"></i>
+                  </a>
+                </span>
+                <span class="fa-stack fa-2x pull-right">
+                  <a class="consent-button" href="<%= send('consent_'+next_step(step)+'_path', @consent.procedure_id, @consent.id) %>">
+                    <i class="fa fa-arrow-circle-right fa-stack-2x"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render 'attestation' %>
+  </div>
+</section>

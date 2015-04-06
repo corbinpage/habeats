@@ -1,0 +1,49 @@
+<%= form_for(@consent, url: create_consent_path) do |f| %>
+  <% if @consent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consent.errors.count, "error") %> prohibited this consent from being saved:</h2>
+
+      <ul>
+      <% @consent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :procedure_id %><br>
+    <%= f.number_field :procedure_id %>
+  </div>
+  <div class="field">
+    <%= f.label :indications_complete %><br>
+    <%= f.check_box :indications_complete %>
+  </div>
+  <div class="field">
+    <%= f.label :benefits_complete %><br>
+    <%= f.check_box :benefits_complete %>
+  </div>
+  <div class="field">
+    <%= f.label :risks_complete %><br>
+    <%= f.check_box :risks_complete %>
+  </div>
+  <div class="field">
+    <%= f.label :alternatives_complete %><br>
+    <%= f.check_box :alternatives_complete %>
+  </div>
+  <div class="field">
+    <%= f.label :description_complete %><br>
+    <%= f.check_box :description_complete %>
+  </div>
+  <div class="field">
+    <%= f.label :consent_complete %><br>
+    <%= f.check_box :consent_complete %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

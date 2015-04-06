@@ -1,0 +1,55 @@
+// Place all the styles related to the jobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.jobs {
+
+  #job_type_form {
+    display: none;
+  }
+
+  section#upload .form-group {
+    margin-bottom: 25px;
+  }
+  section#upload .form-group input,
+  section#upload .form-group textarea {
+    padding: 20px;
+  }
+  section#upload .form-group input.form-control {
+    height: auto;
+  }
+  section#upload .form-group textarea.form-control {
+    height: 236px;
+  }
+  section#upload .form-control:focus {
+    border-color: #428bca;
+    box-shadow: none;
+  }
+  section#upload ::-webkit-input-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #bbbbbb;
+  }
+  section#upload :-moz-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #bbbbbb;
+  }
+  section#upload ::-moz-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #bbbbbb;
+  }
+  section#upload :-ms-input-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #bbbbbb;
+  }
+  section#upload .text-danger {
+    color: #e74c3c;
+  }
+
+}

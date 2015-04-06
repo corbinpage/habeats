@@ -1,0 +1,72 @@
+<section class="bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div id="buy-credits" class="col-md-offset-2 col-md-8 well well-lg">
+        <h2 class="section-heading text-center">Buy credits Here</h2>
+        <p class="large text-muted">
+          Thank you for visiting us pre launch. To claim your free credits, please use credit card number "4242 4242 4242 4242" with any three digit csv number and any credit card expiration date that is in the future.
+        </p>
+        <%= form_tag buy_credits_path do %>
+          <div class="row">
+            <div class="form-group text-center">
+              <div class="radio-inline">
+                <%= radio_button_tag(:credits, "1") %>
+                <%= label_tag(:one_credit, "One Credit - $15") %>
+              </div>
+              <div class="radio-inline">
+                <%= radio_button_tag(:credits, "2", :checked => true) %>
+                <%= label_tag(:two_credits, "Two Credits - $25") %>
+              </div>
+              <div class="radio-inline">
+                <%= radio_button_tag(:credits, "3") %>
+                <%= label_tag(:two_credits, "Three Credits - $50") %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <%= submit_tag "Purchase", class: "btn btn-xl", id: "customButton"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TODO: Move to Javascripts folder and only include on charges controller -->
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  var handler = StripeCheckout.configure({
+    key: "<%= ENV['STRIPE_PUBLIC_KEY'] %>",
+    // image: '/square-image.png',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+      var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+      var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+      $("form").append(tokenInput).append(emailInput).submit();
+    }
+  });
+
+  document.getElementById('customButton').addEventListener('click', function(e) {
+      var credits = $('input[type=radio][name="credits"]:checked').val();
+      switch(credits){
+        case "1":
+          var price = "1500"
+          break;
+        case "2":
+          var price = "2500"
+          break;
+        case "3":
+          var price = "5000"
+          break;
+      }
+    // Open Checkout with further options
+    handler.open({
+      name: '<%= ENV['company_name'] %> Credits',
+      description: credits + ' Credits',
+      amount: price,
+      email: "<%= current_user ? current_user.email : "" %>"
+    });
+    e.preventDefault();
+  });
+</script>

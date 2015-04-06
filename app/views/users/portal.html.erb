@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<section class="section bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class="panel panel-procedure main-panel">
+          <div class="panel-heading">
+            <h2 class="panel-title">Patient Portal</h2>
+            <p class="instructions">You'll find links to all your information and procedures below.</p>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <% if @consents.empty?%>
+                <p>No consents yet</p>
+                <% else %>
+                <table class="table table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Procedure</th>
+                      <th>Indications</th>
+                      <th>Benefits</th>
+                      <th>Risks</th>
+                      <th>Alternatives</th>
+                      <th>Descriptions</th>
+                      <th>Complete?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @consents.each do |consent| %>
+                    <tr>
+                      <td><%= link_to consent.procedure.name, consent.procedure %></td>
+                      <td><%= consent.indications_complete %></td>
+                      <td><%= consent.benefits_complete %></td>
+                      <td><%= consent.risks_complete %></td>
+                      <td><%= consent.alternatives_complete %></td>
+                      <td><%= consent.description_complete %></td>
+                      <td><%= consent.consent_complete %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+
+                </table>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

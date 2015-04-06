@@ -1,0 +1,85 @@
+<div class="row">
+  <h3>Messages</h3>
+</div>
+
+<% @job.new_messages.each do |message| %>
+
+  <div class="row">
+    <strong>Sender: </strong><%= sender(message) %>
+  </div>
+  <div class="row">
+    <strong>Subject: </strong><%= message.subject %>
+  </div>
+  <div class="row">
+    <strong>Created At: </strong><%= message.created_at %>
+  </div>
+  <div class="row">
+    <strong>Body:</strong>
+  </div>
+  <div class="row">
+    <%= message.body %>
+  </div>
+  <br>
+  
+  <% message.find_replys.each do |message_reply| %>
+    <div class="col-md-12">
+      <div class="row">
+        <strong>Replys:</strong>
+      </div>
+      <div class="row">
+        <strong>Sender: </strong><%= sender(message_reply) %>
+      </div>
+      <div class="row">
+        <strong>Subject: </strong><%= message_reply.subject %>
+      </div>
+      <div class="row">
+        <strong>Created At: </strong><%= message_reply.created_at %>
+      </div>
+      <div class="row">
+        <strong>Body:</strong>
+      </div>
+      <div class="row">
+        <%= message_reply.body %>
+      </div>
+      <br>
+    </div>
+  <% end %>
+
+<% end %>
+
+<div class="row">
+  <h3>New Message</h3>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for @job, url: {action: "send_client_email"}, :html => { :multipart => true }  do |f| %>
+
+      <div class="row">
+        <div class="form-group">
+          <%= label_tag "job[messages_attributes][0][subject]", "Subject" %>
+          <%= text_field_tag "job[messages_attributes][0][subject]", "Your proofreading job is complete.", class: "form-control form-subject" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <%= label_tag "job[messages_attributes][0][body]", "Body" %>
+          <%= text_area_tag "job[messages_attributes][0][body]", "We have completed your proofreading job. Please see the final attachments. You can also download your documents here: #{ENV['domain']}/users/#{@job.user.id}/jobs/#{@job.id}.", class: "form-control"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <%= check_box_tag "job[messages_attributes][0][email_attachments][]" %>
+          <%= label_tag "job[messages_attributes][0][email_attachments][]", "Email Proofreader Checked Attachments?" %>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <%= f.submit("Send", class: "btn btn-xl text-center") %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

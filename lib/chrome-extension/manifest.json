@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "Double Check",
+  "description": "Send emails and documents to a certified proof reader with one click",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_icon": "spy-icon-19.png",
+    "default_title": "Blast the typo!",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["jquery-2.1.1.min.js", "jquerypp.custom.js", "page.js"]
+    }
+  ],
+  
+  "icons": { "16": "spy-icon-16.png",
+           "64": "spy-icon-64.png",
+          "128": "spy-icon-128.png" },
+  // Corbin doens't think this is being used, could be for sending things to google spreadsheet api
+  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'"
+
+}
+

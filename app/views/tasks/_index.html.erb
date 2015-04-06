@@ -1,0 +1,83 @@
+<div class="row">
+  <h3>Management Actions</h3>  
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+<% @tasks.each_with_index do |task, i| %>
+
+  <div class="row">
+    Task <%= i+1 %>: <%= task.task_type %>
+  </div>
+  <br>
+
+  <!-- Manage Timers -->
+  <% task.timers.each do |timer| %>
+    <!-- Show Timer -->
+    <div class="row">
+      Proofreader: <%= timer.proofreader.name %>
+    </div>
+    <div class="row">
+      Start: <%= timer.start_time ? timer.start_time.strftime("%B %d, %Y at %l:%M%p") : "" %>
+    </div>
+    <div class="row">
+      End:   <%= timer.end_time ? timer.end_time.strftime("%B %d, %Y at %l:%M%p") : "" %>
+    </div>
+    <br>
+    <!-- End Timer -->
+    <% if !timer.end_time %>
+      <div class="row">
+        <div class="form-group">
+          <%= button_to "End Task Timer", end_timer_path(timer), method: :patch, class: "btn btn-danger" %>
+        </div>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <!-- Start Timer -->
+  <% if !task.complete %>
+    <div class="row">
+      <div class="form-group">
+        <%= button_to "Start Task Timer", {controller: "tasks", action: "create_timer", id: task.id }, class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Show documents -->
+  <ol>
+    <li><%= task.task_type %> documents
+      <ul>
+        <% task.attachments.each do |a| %>
+          <li><%= link_to a.attachment_file_name, a.attachment.url(:original, false) %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ol>
+
+  <!-- Upload Files -->
+  <%= form_for task, url: {controller: "tasks", action: "upload_files", id: task.id }, :html => { :multipart => true }  do |f| %>
+    <div class="row">
+      <div class="form-group">
+        <%= f.file_field "attachment", multiple: true, class: "form-control form-attachment" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <%= f.submit("Upload Files", class: "btn btn-success") %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Mark Complete -->
+  <div class="row">
+    <div class="form-group">
+      <% if task.complete %>
+        <strong><% task.task_type %> Complete: </strong><%= task.complete %>
+      <% else %>
+        <%= button_to "Mark Task Complete", {controller: "tasks", action: "mark_complete", id: task.id }, method: "patch", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
+</div>

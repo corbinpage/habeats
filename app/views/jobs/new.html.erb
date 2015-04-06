@@ -1,0 +1,22 @@
+<section id="upload" class="bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Submit Document(s)</h2>
+        <h3 class="section-subheading text-muted"></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-jobs">
+          <div class="panel-heading">
+            <h2 class="panel-title">Welcome - <%= @user.name if @user.name %></h2>
+            <p class="instructions">Please submit a job using our secure portal. Just fill out the basic information below, and we'll take care of the rest!</p>
+          </div>
+          <div class="panel-body">
+           <%= render 'jobs/form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

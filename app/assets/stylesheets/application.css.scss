@@ -1,0 +1,35 @@
+// Use scss to specifically specify the order in which css files are being included
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap-datetimepicker';
+@import "font-awesome";
+@import "framework_and_overrides";
+@import "agency_theme";
+@import "home";
+@import "users";
+@import "jobs";
+@import "charges";
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+#proofreader_logged_in {
+  position: fixed;
+  z-index: 1000;
+  right: -76px;
+  top: 45px;
+  padding: 1px 69px;
+  border: 1px solid;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: orange;
+  background-color: white;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+}
