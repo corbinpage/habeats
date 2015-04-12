@@ -11,105 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214182953) do
+ActiveRecord::Schema.define(version: 20150411220837) do
 
-  create_table "attachments", force: true do |t|
-    t.integer  "message_id"
-    t.integer  "task_id"
+  create_table "days", force: true do |t|
+    t.date     "date"
+    t.integer  "score"
+    t.integer  "dofw"
+    t.integer  "week_num"
+    t.integer  "range_value"
+    t.string   "range_color"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "attachment_file_name"
-    t.string   "attachment_content_type"
-    t.integer  "attachment_file_size"
-    t.datetime "attachment_updated_at"
+    t.integer  "goal_id"
   end
 
-  add_index "attachments", ["message_id"], name: "index_attachments_on_message_id"
-  add_index "attachments", ["task_id"], name: "index_attachments_on_task_id"
+  add_index "days", ["goal_id"], name: "index_days_on_goal_id"
 
-  create_table "consents", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "procedure_id"
-    t.boolean  "indications_complete",  default: false
-    t.boolean  "benefits_complete",     default: false
-    t.boolean  "risks_complete",        default: false
-    t.boolean  "alternatives_complete", default: false
-    t.boolean  "description_complete",  default: false
-    t.boolean  "consent_complete",      default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobs", force: true do |t|
-    t.integer  "user_id"
-    t.string   "job_type"
-    t.boolean  "complete"
-    t.datetime "completed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "total_time"
-  end
-
-  add_index "jobs", ["job_type"], name: "index_jobs_on_job_type"
-  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id"
-
-  create_table "messages", force: true do |t|
-    t.integer  "job_id"
+  create_table "goals", force: true do |t|
     t.string   "name"
-    t.string   "email"
-    t.string   "telephone"
-    t.string   "subject"
-    t.text     "body"
-    t.string   "location_submitted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "mailgun_id"
-    t.string   "mailgun_reply_to_id"
-    t.string   "mailgun_response"
-  end
-
-  add_index "messages", ["job_id"], name: "index_messages_on_job_id"
-  add_index "messages", ["mailgun_id"], name: "index_messages_on_mailgun_id"
-  add_index "messages", ["mailgun_reply_to_id"], name: "index_messages_on_mailgun_reply_to_id"
-
-  create_table "procedure_details", force: true do |t|
-    t.integer  "procedure_id"
-    t.text     "indications_text"
-    t.text     "benefits_text"
-    t.text     "risks_text"
-    t.text     "alternatives_text"
-    t.text     "description_text"
-    t.text     "post_op_text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "procedures", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
     t.string   "category"
+    t.string   "theme"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
-  create_table "tasks", force: true do |t|
-    t.integer "job_id"
-    t.string  "task_type"
-    t.boolean "complete"
-  end
-
-  add_index "tasks", ["job_id"], name: "index_tasks_on_job_id"
-  add_index "tasks", ["task_type"], name: "index_tasks_on_task_type"
-
-  create_table "timers", force: true do |t|
-    t.integer  "task_id"
-    t.integer  "proofreader_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-  end
-
-  add_index "timers", ["proofreader_id"], name: "index_timers_on_proofreader_id"
-  add_index "timers", ["task_id"], name: "index_timers_on_task_id"
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

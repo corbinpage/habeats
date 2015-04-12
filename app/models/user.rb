@@ -4,14 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :messages
-  has_many :jobs
-  has_many :timers
-  has_many :consents
+  # has_many :messages
+  # has_many :jobs
+  # has_many :timers
+  # has_many :consents
 
-  validates :name, :presence => true
+  # validates :name, :presence => true
   
-  enum role: [:user, :proofreader, :admin]
+  # enum role: [:user, :proofreader, :admin]
 
   def set_default_role
     self.role ||= :user

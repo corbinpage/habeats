@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<section class="bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="panel panel-procedure">
+        <div class="panel-body">
+          <div class="row">
+            <% @goals.each do |g| %>
+            <div class="col-md-4">
+              <%= render :partial => 'home/single_goal', :locals => { :g => g }%>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
