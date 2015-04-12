@@ -8,8 +8,18 @@
 @import "agency_theme";
 @import "home";
 @import "users";
-@import "jobs";
-@import "charges";
+
+.results-day {
+  font-size: 12px;
+  font-family: Helvetica, Arial;
+  fill: #aaa;
+}
+
+.results-month {
+  font-size: 12px;
+  font-family: Helvetica, Arial;
+  fill: #aaa;
+}
 
 .col-centered{
   float: none;
