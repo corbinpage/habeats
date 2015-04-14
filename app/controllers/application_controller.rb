@@ -1,14 +1,27 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :authenticate_user!
-  before_filter :only_proofreaders!
+  # before_filter :authenticate_user!
 
-  private
-  
-  def only_proofreaders!
-    if current_user && !current_user.proofreader?
-     redirect_to root_path, notice: "Only Proofreaders Can View that page"
+  def update_day
+    @day = Day.find(params[:day_id])
+    if(params[:commit]=="Add")
+      @day.range_color = "#bbb"
+      @day.score+=1
+    elsif(params[:commit]=="Subtract")
+      @day.score-=1
     end
+
+    respond_to do |format|
+      if @day.save
+        format.json   { render json: @day, status: :created }
+      else
+        format.json { render json: @day, status: :unprocessable_entity }
+      end
+    end
+
   end
+
+
+
 
 end

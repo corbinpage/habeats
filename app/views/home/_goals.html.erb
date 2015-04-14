@@ -3,11 +3,11 @@
 <section class="bg-light-gray">
   <div class="container">
     <div class="row">
-      <% @goals.each do |g| %>
-      <div class="col-md-4">
-        <%= render :partial => 'home/single_goal', :locals => { :g => g }%>
+      <div class="col-xs-12">
+        <% @goals.each do |g| %>
+          <%= render :partial => 'home/single_goal', :locals => { :g => g }%>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
 </section>

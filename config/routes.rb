@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   #   resources :jobs, only: [:new, :create, :show, :update, :index]
   # end
 
+  post '/goal/:id/update_day', to: 'application#update_day', as: 'update_day'
+
   # resources :procedures
   # get   '/procedure/:id',         to: 'procedures#show', as: 'procedure_show'
 

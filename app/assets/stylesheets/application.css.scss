@@ -9,6 +9,11 @@
 @import "home";
 @import "users";
 
+.results-rect:hover {
+  stroke: #555;
+  stroke-width: 1px;
+}
+
 .results-day {
   font-size: 12px;
   font-family: Helvetica, Arial;
@@ -20,6 +25,13 @@
   font-family: Helvetica, Arial;
   fill: #aaa;
 }
+
+.add-score {
+  width: 80%;
+}
+
+
+/* ------------------------------------- */
 
 .col-centered{
   float: none;

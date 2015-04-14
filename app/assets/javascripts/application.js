@@ -25,5 +25,26 @@
 //= require bootstrap-datetimepicker
 
 //= require ./home.js.coffee
-//= require ./jobs.js.coffee
-//= require ./charges.js
+
+
+$(function() {
+  $(document).ajaxSuccess(function(event, xhr, status, data) {
+    var rect = $("rect").find("[data-id='" + data.id + "']");
+    console.log(data);
+    console.log(rect);
+    
+
+    rect.attr("fill",data.range_color);
+    rect.attr("data-score",data.score);
+  })
+
+  $("rect").click(function() {
+
+    console.log(this);
+
+    $("select").val(this.attr("data-id"));
+
+  })
+
+
+});

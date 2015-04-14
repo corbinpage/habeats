@@ -1,30 +1,29 @@
-<div class=" <%= g.theme %> panel panel-procedure">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-xs-12">
-        <h3><%= g.name %></h3>
-        <div>
-          <svg width="160" height="1000">
-            <g>
-              <text x="28"  y="15" class="results-day">M</text>
-              <text x="64"  y="15" class="results-day">W</text>
-              <text x="103"  y="15" class="results-day">F</text>
-              <text x="138" y="15" class="results-day">S</text>
-            </g>
-            <g>
-              <% week_counter = 0 %>
-              <% g.days.each_with_index do |d,i| %>
-              <% week_counter = (d.dofw == 7 ? week_counter+=1 : week_counter) %>
-              <% if (d.dofw == 7 || i == 0) %><g><% end %>
-              <% if d.date.day == 1 %>
-              <text x="0" y="<%= (18 * week_counter)+11 %>" class="results-month"><%= d.date.strftime('%b') %></text>
-              <% end %>
-              <rect class="day" width="15" height="15" x="<%= (18 * d.dofw)+8 %>" y="<%= 18 *week_counter %>" fill="<%= d.range_color%>" data-count="<%= d.score%>" data-date="<%= d.date %>"></rect>
-              <% if (d.dofw == 1 || i == g.days.length-1) %></g><% end %>
-              <% end %>
-            </g>
-          </svg>
-        </div>
+
+<div class="col-md-4">
+  <div class=" <%= g.theme %> panel panel-procedure">
+    <div class="panel-body">
+      <%= render :partial => 'home/goal_form', :locals => { :g => g }%>
+      <div>
+        <svg width="160" height="1000" class="center-block">
+          <g>
+            <text x="28"  y="15" class="results-day">M</text>
+            <text x="64"  y="15" class="results-day">W</text>
+            <text x="103"  y="15" class="results-day">F</text>
+            <text x="138" y="15" class="results-day">S</text>
+          </g>
+          <g>
+            <% week_counter = 0 %>
+            <% g.days.each_with_index do |d,i| %>
+            <% week_counter = (d.dofw == 7 ? week_counter+=1 : week_counter) %>
+            <% if (d.dofw == 7 || i == 0) %><g><% end %>
+            <% if d.date.day == 1 %>
+            <text x="0" y="<%= (18 * week_counter)+11 %>" class="results-month"><%= d.date.strftime('%b') %></text>
+            <% end %>
+            <rect class="results-rect" class="day" width="15" height="15" x="<%= (18 * d.dofw)+8 %>" y="<%= 18 *week_counter %>" fill="<%= d.range_color%>" data-id="<%= d.id%>" data-score="<%= d.score%>" data-date="<%= d.date %>"></rect>
+            <% if (d.dofw == 1 || i == g.days.length-1) %></g><% end %>
+            <% end %>
+          </g>
+        </svg>
       </div>
     </div>
   </div>
