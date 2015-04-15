@@ -3,14 +3,15 @@
     <h3><%= g.name %></h3>
     <%= form_tag('/goal/'+g.id.to_s+'/update_day', remote: true, class: "day-form") do %>
     <div class="form-group">
-      <% date_month = g.days.map {|d| [d.date, d.id]} %>
-      <%= select_tag(:day_id, options_for_select(date_month, g.days.first.id), class: "form-control") %>
+      <div class="day-btn-group center-block">
+        <%= submit_tag("+", class: "btn btn-success btn-lg change-score add-score") %>
+        <%= submit_tag("-", class: "btn btn-danger  btn-xs change-score subtract-score") %>
+        <!-- <i id="fa-edit" class="fa fa-edit fa-stack-1x fa-inverse"></i> -->
+      </div>
     </div>
     <div class="form-group">
-      <%= submit_tag("Add", class: "btn btn-success btn-lg change-score add-score") %>
-      <div class="form-group">
-      </div>
-      <%= submit_tag("Subtract", class: "btn btn-danger btn-xs change-score subtract-score") %>
+      <% date_month = g.days.map {|d| [d.date.strftime("%m-%d-%Y"), d.id]} %>
+      <%= select_tag(:day_id, options_for_select(date_month, g.days.first.id), class: "center-block day-selector form-control", id: g.id.to_s+"-day-selector") %>
     </div>
     <% end %>
   </div>

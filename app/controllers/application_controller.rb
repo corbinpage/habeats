@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
 
   def update_day
     @day = Day.find(params[:day_id])
-    if(params[:commit]=="Add")
-      @day.range_color = "#bbb"
-      @day.score+=1
-    elsif(params[:commit]=="Subtract")
-      @day.score-=1
+
+    if(params[:commit]=="+")
+      @day.add_score
+    elsif(params[:commit]=="-")
+      @day.subtract_score
     end
 
     respond_to do |format|

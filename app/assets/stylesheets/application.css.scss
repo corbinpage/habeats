@@ -27,9 +27,38 @@
 }
 
 .add-score {
-  width: 80%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  font-size: 60px;
+  z-index: 1;
 }
 
+.subtract-score {
+  position: absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  z-index: 2;
+  font-size: 10px;
+  top: 100px;
+  left: 20px;
+}
+
+.subtract-score:hover {
+  border: 2px solid white;
+}
+
+.day-btn-group {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.day-selector {
+  width: 120px;
+}
 
 /* ------------------------------------- */
 
