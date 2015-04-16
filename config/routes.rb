@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "home#index"
-  get '/portal', to: 'users#portal', as: 'portal'
+  post '/goal/:id/update_day', to: 'application#update_day', as: 'update_day'
 
   # Client Methods
   devise_for :users, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   #   resources :jobs, only: [:new, :create, :show, :update, :index]
   # end
 
-  post '/goal/:id/update_day', to: 'application#update_day', as: 'update_day'
+  # get '/portal', to: 'users#portal', as: 'portal'
 
   # resources :procedures
   # get   '/procedure/:id',         to: 'procedures#show', as: 'procedure_show'

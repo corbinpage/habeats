@@ -13,13 +13,13 @@ gem 'devise'
 # Hide secret keys, please request a copy of config/application.yml
 gem 'figaro', '>= 1.0.0.rc1'
 # Allow files to be attached, not currenly being used
-gem "paperclip"
+# gem "paperclip"
 # Connect to Google Cloud Storage
-gem "fog"
+# gem "fog"
 # Collect Credit Card information and get paid
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+# gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Mailgun
-gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+# gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
 ## CSS ##
 # Use SCSS for stylesheets

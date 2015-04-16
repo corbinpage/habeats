@@ -24,7 +24,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 
-//= require ./home.js.coffee
+//= require ./home.js
 
 
 $(function() {
