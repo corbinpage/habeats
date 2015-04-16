@@ -16,22 +16,13 @@ goals = [{name: "Workout",  category: "Health", theme: "habeats-blue", user_id: 
 ]
 
 days = (0..300).to_a
-range_colors = ["#eee","#d6e685","#8cc665","#44a340","#1e6823"]
 
-goals.each do |goal|
-  goal_obj = Goal.new(goal)
+goals.each do |g|
+  goal_obj = Goal.new(g)
   goal_obj.save
 
-  days.each do |i|
-    day_obj = Day.new
-    day_obj.date = (Date.today - i)
-    day_obj.dofw = (day_obj.date.wday == 0 ? 7 : day_obj.date.wday)
-    day_obj.week_num = (day_obj.date.year.to_s + day_obj.date.cweek.to_s.rjust(2,"0")).to_i
-    day_obj.score = 1+Random.rand(9)
-    day_obj.range_value = day_obj.score/2
-    day_obj.range_color = range_colors[day_obj.range_value]
-    day_obj.goal_id = goal_obj.id
-    day_obj.save
+  days.each do |i| 
+    goal_obj.add_date(Date.today - i, Random.rand(9))
   end
 
 end

@@ -10,3 +10,10 @@ ps xa \
 EOF
   puts `#{sh}`
 end
+
+task :add_day => :environment do
+  Goal.all do |g|
+    g.add_today
+  end
+
+end
