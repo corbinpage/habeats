@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   skip_before_filter :only_proofreaders!, :only => :index
   
   def index
-    @goals = Goal.all
+    @goals = Goal.get_display
   end
   
 end

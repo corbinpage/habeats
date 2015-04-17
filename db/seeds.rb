@@ -22,7 +22,8 @@ goals.each do |g|
   goal_obj.save
 
   days.each do |i| 
-    score = (Rails.env.development? ? Random.rand(9) : 0)
+    # score = (Rails.env.development? ? Random.rand(9) : 0)
+    score = 0
     goal_obj.add_date(Date.today - i, score)
   end
 

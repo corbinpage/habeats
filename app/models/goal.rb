@@ -3,8 +3,15 @@ class Goal < ActiveRecord::Base
   has_many :days
   # attr_protected
 
+  def self.get_display
+    goals = Goal.all
+    goals.collect! {|g| g.days.order('date DESC').limit(90); g}
+  end
+
   def add_today
-    self.add_date(Date.today)  
+    if self.days.where(date: Date.today).empty?
+      self.add_date(Date.today)
+    end
   end
 
   def add_date(date_val, score=0)

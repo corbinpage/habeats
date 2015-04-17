@@ -12,6 +12,7 @@ EOF
 end
 
 task :add_day => :environment do
+  Rails.env.development? ? sleep(1) : sleep(1.minutes)
   Goal.all do |g|
     g.add_today
   end
