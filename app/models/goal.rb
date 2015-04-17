@@ -1,11 +1,11 @@
 class Goal < ActiveRecord::Base
   belongs_to :users
   has_many :days
-  # attr_protected
+  # attr_protected 
 
   def self.get_display
     goals = Goal.all
-    goals.collect! {|g| g.days.order('date DESC').limit(90); g}
+    goals.collect! {|g| g.days = g.days.order('date DESC').limit(90); g}
   end
 
   def add_today
