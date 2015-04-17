@@ -13,7 +13,7 @@
           </g>
           <g>
             <% week_counter = 1 %>
-            <% g.days.each_with_index do |d,i| %>
+            <% g.days.order('date DESC').each_with_index do |d,i| %>
             <% week_counter = (d.dofw == 7 && i != 1 ? week_counter+=1 : week_counter) %>
             <% if (d.dofw == 7 || i == 0) %><g><% end %>
             <% if d.date.day == 1 %>
