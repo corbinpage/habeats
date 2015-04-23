@@ -34,7 +34,11 @@ $(function() {
     rect.attr("data-score",data.score);
   })
 
+  var $lastFocusRect;
   $("rect").click(function() {
+    if(typeof $lastFocusRect !== 'undefined') {$lastFocusRect.attr("class","results-rect")};
+    $(this).attr("class","results-rect focus");
+    $lastFocusRect = $(this);
     var selectorId = "#"+$(this).attr("data-g-id")+"-day-selector";
     $(selectorId).val($(this).attr("data-id"));
   })

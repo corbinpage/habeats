@@ -9,8 +9,20 @@
 @import "home";
 @import "users";
 
+.panel-goal {
+  width: 205px;
+  border-color: #3B9158;
+  /* Removing Box-Shadow for now */
+  /*box-shadow: 0 2px 2px rgba(31, 73, 125, 0.8), 0 -2px 2px rgba(31, 73, 125, 0.8), 2px 0 2px rgba(31, 73, 125, 0.8), -2px 0 2px rgba(31, 73, 125, 0.8);*/
+}
+
 .results-rect:hover {
   stroke: #555;
+  stroke-width: 1px;
+}
+
+.results-rect.focus {
+  stroke: #222;
   stroke-width: 1px;
 }
 
@@ -78,27 +90,7 @@
   width: 120px;
 }
 
-/* ------------------------------------- */
-
 .col-centered{
   float: none;
   margin: 0 auto;
-}
-
-#proofreader_logged_in {
-  position: fixed;
-  z-index: 1000;
-  right: -76px;
-  top: 45px;
-  padding: 1px 69px;
-  border: 1px solid;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: orange;
-  background-color: white;
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-  transform: rotate(45deg);
 }
