@@ -15,7 +15,7 @@ goals = [{name: "Workout",  category: "Health", theme: "habeats-blue", user_id: 
  {name: "Code",  category: "Work", theme: "habeats-yellow", user_id: 2} 
 ]
 
-days = (0..300).to_a
+days = (0..95).to_a
 
 goals.each do |g|
   goal_obj = Goal.new(g)
@@ -24,7 +24,7 @@ goals.each do |g|
   days.each do |i| 
     # score = (Rails.env.development? ? Random.rand(9) : 0)
     score = 0
-    goal_obj.add_date(Date.today - i, score)
+    goal_obj.add_date(Date.today - 95 + i, score)
   end
 
 end
