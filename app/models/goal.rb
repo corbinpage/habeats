@@ -5,7 +5,7 @@ class Goal < ActiveRecord::Base
 
   def self.get_display
     goals = Goal.all
-    goals.collect! {|g| g.days = g.days.order('date DESC').limit(90); g}
+    goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
   end
 
   def add_today
@@ -21,6 +21,10 @@ class Goal < ActiveRecord::Base
     day_obj.set_range
     day_obj.goal_id = self.id
     day_obj.save    
+  end
+
+  def days
+    @days ||= Day.where(goal_id: self.id).chronologically
   end
 
 end

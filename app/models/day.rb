@@ -1,7 +1,7 @@
 class Day < ActiveRecord::Base
   belongs_to :days
   # attr_protected
-  scope :chronologically, -> { order(id: :desc) } 
+  scope :chronologically, -> { order(date: :desc) } 
 
   @@blue_range_colors = ["#eee","#9FC1F8","#4587F6","#376BC3","#214177"]
   @@green_range_colors = ["#eee","#d6e685","#8cc665","#44a340","#1e6823"]
