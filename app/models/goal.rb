@@ -4,7 +4,7 @@ class Goal < ActiveRecord::Base
   # attr_protected 
 
   def self.get_display
-    goals = Goal.all
+    goals = Goal.all.order(id: :asc)
     goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
   end
 
