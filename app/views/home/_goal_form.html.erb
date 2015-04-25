@@ -5,7 +5,7 @@
         <a class="editable-title" data-pk="<%=g.id%>" data-url="<%=update_title_path(g.id)%>"><%= g.name %></a>
       </div>
     </div>
-    <%= form_tag('/goal/'+g.id.to_s+'/update_day', remote: true, class: "day-form") do %>
+    <%= form_tag('/goals/'+g.id.to_s+'/update_day', remote: true, class: "day-form") do %>
     <div class="form-group">
       <div class="day-btn-group center-block">
         <%= submit_tag("+", class: "btn btn-success btn-lg change-score add-score") %>

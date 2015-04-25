@@ -17,7 +17,25 @@
   /*box-shadow: 0 2px 2px rgba(31, 73, 125, 0.8), 0 -2px 2px rgba(31, 73, 125, 0.8), 2px 0 2px rgba(31, 73, 125, 0.8), -2px 0 2px rgba(31, 73, 125, 0.8);*/
 }
 
+.panel-new {
+  width: 205px;
+  height: 595px;
+  border-color: #777;
+  background-color: #F7F7F7;
+  /* Removing Box-Shadow for now */
+  /*box-shadow: 0 2px 2px rgba(31, 73, 125, 0.8), 0 -2px 2px rgba(31, 73, 125, 0.8), 2px 0 2px rgba(31, 73, 125, 0.8), -2px 0 2px rgba(31, 73, 125, 0.8);*/
+}
+
 .editable-title {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 24px;
+  color: #222;
+  word-wrap: break-word;
+}
+
+.new-goal-title {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -98,6 +116,24 @@
   width: 150px;
   height: 150px;
   position: relative;
+}
+
+.goal-btn-group {
+  width: 150px;
+  height: 150px;
+}
+
+.add-goal {
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  font-size: 60px;
+  line-height: 100%;
+  border-color: #777;
+  background-color: #C4C4C4;
+  /* Removing Box-Shadow for now */
+  /*box-shadow: 0 2px 2px rgba(31, 73, 125, 0.8), 0 -2px 2px rgba(31, 73, 125, 0.8), 2px 0 2px rgba(31, 73, 125, 0.8), -2px 0 2px rgba(31, 73, 125, 0.8);*/
+
 }
 
 .day-selector {

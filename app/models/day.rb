@@ -6,6 +6,15 @@ class Day < ActiveRecord::Base
   @@blue_range_colors = ["#eee","#9FC1F8","#4587F6","#376BC3","#214177"]
   @@green_range_colors = ["#eee","#d6e685","#8cc665","#44a340","#1e6823"]
 
+  def self.create(date_val, score=0)
+    day_obj = Day.new
+    day_obj.set_date(date_val)
+    day_obj.score = score
+    day_obj.set_range
+
+    day_obj  
+  end
+
   def add_score
     self.score+=1
     set_range

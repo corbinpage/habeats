@@ -23,6 +23,13 @@ class Goal < ActiveRecord::Base
     day_obj.save    
   end
 
+  def initialize_days
+    count_back = (0..95).to_a
+    self.days = count_back.map do |i| 
+      Day.create(Date.today - 95 + i)
+    end
+  end
+
   def days
     @days ||= Day.where(goal_id: self.id).chronologically
   end
