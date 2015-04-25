@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-xs-12 center-block text-center">
-    <h3><%= g.name %></h3>
+    <div class="row title-row">
+      <div class="col-xs-12 center-block text-center">
+        <h3 class="editable-title" data-id="<%=g.id%>" data-post="<%=update_title_path(g.id)%>"><%= g.name %></h3>
+      </div>
+    </div>
     <%= form_tag('/goal/'+g.id.to_s+'/update_day', remote: true, class: "day-form") do %>
     <div class="form-group">
       <div class="day-btn-group center-block">

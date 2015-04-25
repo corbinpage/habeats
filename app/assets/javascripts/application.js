@@ -17,6 +17,7 @@
 //= require ./theme/jquery.easing.min.js
 //= require ./theme/cbpAnimatedHeader.js
 //= require ./theme/jqBootstrapValidation.js
+//= require ./bootstrap-editable.js
 //= require ./theme/agency.js
 
 // Load all Bootstrap JavaScript
@@ -28,6 +29,40 @@
 
 
 $(function() {
+
+  $.fn.editable.defaults.mode = 'inline';
+  $('.editable-title').editable({
+    type: 'text',
+    url: $(this).data("post"),    
+    pk: $(this).data("post"),
+    name: 'title',    
+    placement: 'top',
+    title: 'Enter title'    
+  });
+
+  // $('.edit').click(function(e){    
+  //   e.stopPropagation();
+  //   $('#publicname-change').editable('toggle');
+  //   $('.edit').hide();
+  // });
+  // $(document).on('click', '.editable-cancel, .editable-submit', function(){
+  //   $('.edit').show();
+  // })        
+//ajax emulation. Type "err" to see error message
+// $.mockjax({
+//   url: '/post',
+//   responseTime: 100,
+//   response: function(settings) {
+//     if(settings.data.value == 'err') {
+//      this.status = 500;  
+//      this.responseText = 'Validation error!'; 
+//    } else {
+//      this.responseText = '';  
+//    }
+//  }
+// }); 
+
+  // Update the rect's after the Ajax call succeeds
   $(document).ajaxSuccess(function(event, xhr, status, data) {
     var rect = $("#day-"+data.id);
     rect.attr("fill",data.range_color);

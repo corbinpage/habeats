@@ -2,7 +2,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap-datetimepicker';
+@import "bootstrap-datetimepicker";
+@import "bootstrap-editable.js";
 @import "font-awesome";
 @import "framework_and_overrides";
 @import "agency_theme";
@@ -14,6 +15,14 @@
   border-color: #3B9158;
   /* Removing Box-Shadow for now */
   /*box-shadow: 0 2px 2px rgba(31, 73, 125, 0.8), 0 -2px 2px rgba(31, 73, 125, 0.8), 2px 0 2px rgba(31, 73, 125, 0.8), -2px 0 2px rgba(31, 73, 125, 0.8);*/
+}
+
+.editable-title {
+  display: inline;
+}
+
+.title-row {
+  margin-bottom: 15px;
 }
 
 .results-rect:hover {

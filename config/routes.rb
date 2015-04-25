@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "home#index"
   post '/goal/:id/update_day', to: 'application#update_day', as: 'update_day'
+  post '/goal/:id/update_title', to: 'goal#update_title', as: 'update_title'
 
   # Client Methods
   devise_for :users, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions" }
