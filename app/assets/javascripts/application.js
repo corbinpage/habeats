@@ -69,14 +69,34 @@ $(function() {
     rect.attr("data-score",data.score);
   })
 
-  var $lastFocusRect;
-  $("rect").click(function() {
-    if(typeof $lastFocusRect !== 'undefined') {$lastFocusRect.attr("class","results-rect")};
-    $(this).attr("class","results-rect focus");
-    $lastFocusRect = $(this);
-    var selectorId = "#"+$(this).attr("data-g-id")+"-day-selector";
-    $(selectorId).val($(this).attr("data-id"));
-  })
+  // var $lastFocusRect;
+  // $("rect").click(function() {
+  //   if(typeof $lastFocusRect !== 'undefined') {$lastFocusRect.attr("class","results-rect")};
+  //   $(this).attr("class","results-rect focus-rect");
+  //   $lastFocusRect = $(this);
+  //   var selectorId = "#"+$(this).attr("data-g-id")+"-day-selector";
+  //   $(selectorId).val($(this).attr("data-id"));
+  // })
+
+function focusRect($selector) {
+  $("rect[data-gid="+$selector.data("gid")+"]").attr("class","results-rect");
+  $("rect[data-id="+$selector.val()+"]").attr("class","results-rect focus-rect");
+}
+
+$("rect").click(function() {
+  var $selectorId = $(".day-selector[data-gid="+$(this).attr("data-gid")+"]")
+  $($selectorId).val($(this).attr("data-id"));
+  focusRect($selectorId);
+})
+
+$(".day-selector").change(function() {
+  focusRect($(this));
+})
+
+// Select the first Rect of each goal on load
+$.each($(".day-selector"), function() {
+  focusRect($(this));
+})
 
 
 });
