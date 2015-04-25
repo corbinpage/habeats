@@ -3,7 +3,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
-@import "bootstrap-editable.js";
+@import "bootstrap-editable.css";
 @import "font-awesome";
 @import "framework_and_overrides";
 @import "agency_theme";
@@ -18,7 +18,12 @@
 }
 
 .editable-title {
-  display: inline;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 24px;
+  color: #222;
+  word-wrap: break-word;
 }
 
 .title-row {

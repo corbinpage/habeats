@@ -19,12 +19,9 @@
             <text x="0" y="<%= (18 * week_counter)+11 %>" class="results-month"><%= d.date.strftime('%b') %></text>
             <% end %>
             <g class="results-rect-group">
-
-              <rect id="day-<%= d.id%>" class="results-rect day" width="15" height="15" x="<%= (18 * d.dofw)+8 %>" y="<%= 18 * week_counter %>" fill="<%= d.range_color%>" data-id="<%= d.id%>" data-score="<%= d.score%>" data-date="<%= d.date %>" data-g-id="<%= g.id%>"></rect>
+              <rect id="day-<%= d.id%>" class="results-rect" width="15" height="15" x="<%= (18 * d.dofw)+8 %>" y="<%= 18 * week_counter %>" fill="<%= d.range_color%>" data-id="<%= d.id%>" data-score="<%= d.score%>" data-date="<%= d.date %>" data-g-id="<%= g.id%>"></rect>
               <text x="<%= (18 * d.dofw)+12 %>" y="<%= (18 * week_counter) + 12 %>" class="results-rect-text"><%= d.score%></text>
             </g>
-
-
             <% if (d.dofw == 1 || i == g.days.length-1) %></g><% end %>
             <% end %>
           </g>

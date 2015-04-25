@@ -17,28 +17,28 @@
 //= require ./theme/jquery.easing.min.js
 //= require ./theme/cbpAnimatedHeader.js
 //= require ./theme/jqBootstrapValidation.js
-//= require ./bootstrap-editable.js
 //= require ./theme/agency.js
 
 // Load all Bootstrap JavaScript
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
-
+//= require ./bootstrap-editable.min.js
 //= require ./home.js
 
 
 $(function() {
 
   $.fn.editable.defaults.mode = 'inline';
-  $('.editable-title').editable({
-    type: 'text',
-    url: $(this).data("post"),    
-    pk: $(this).data("post"),
-    name: 'title',    
-    placement: 'top',
-    title: 'Enter title'    
-  });
+  $('.editable-title').editable();
+  // $('.editable-title').editable({
+  //   type: 'text',
+  //   // url: $(this).data("post"),    
+  //   // pk: $(this).data("pk"),
+  //   name: 'title',    
+  //   placement: 'top',
+  //   title: 'Enter title'    
+  // });
 
   // $('.edit').click(function(e){    
   //   e.stopPropagation();
