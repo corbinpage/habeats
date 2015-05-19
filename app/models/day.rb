@@ -21,7 +21,9 @@ class Day < ActiveRecord::Base
   end
 
   def subtract_score
-    self.score-=1
+    if self.score >= 1
+      self.score-=1
+    end
     set_range
   end
 

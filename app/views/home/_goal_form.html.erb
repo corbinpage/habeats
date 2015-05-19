@@ -5,12 +5,15 @@
         <a class="editable-title" data-pk="<%=g.id%>" data-url="<%=update_title_path(g.id)%>"><%= g.name %></a>
       </div>
     </div>
-    <%= form_tag('/goals/'+g.id.to_s+'/update_day', remote: true, class: "day-form") do %>
+    <%= form_tag('/goals/'+g.id.to_s+'/update_day', remote: true, class: "day-form", id: "goal-"+g.id.to_s+"-form") do %>
     <div class="form-group">
       <div class="day-btn-group center-block">
-        <%= submit_tag("+", class: "btn btn-success btn-lg change-score add-score") %>
-        <%= submit_tag("-", class: "btn btn-danger  btn-xs change-score subtract-score") %>
-        <!-- <i id="fa-edit" class="fa fa-edit fa-stack-1x fa-inverse"></i> -->
+        <%= button_tag(value: "add", type: "submit", class: "btn btn-success btn-lg change-score add-score") do %>
+        <i class="fa fa-plus"></i>
+        <% end %>
+        <%= button_tag(value: "subtract", type: "submit", class: "btn btn-danger btn-xs change-score subtract-score") do %>
+        <i class="fa fa-minus"></i>
+        <% end %>
       </div>
     </div>
     <div class="form-group">

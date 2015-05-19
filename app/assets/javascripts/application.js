@@ -31,67 +31,46 @@ $(function() {
 
   $.fn.editable.defaults.mode = 'inline';
   $('.editable-title').editable();
-  // $('.editable-title').editable({
-  //   type: 'text',
-  //   // url: $(this).data("post"),    
-  //   // pk: $(this).data("pk"),
-  //   name: 'title',    
-  //   placement: 'top',
-  //   title: 'Enter title'    
-  // });
 
-  // $('.edit').click(function(e){    
-  //   e.stopPropagation();
-  //   $('#publicname-change').editable('toggle');
-  //   $('.edit').hide();
-  // });
-  // $(document).on('click', '.editable-cancel, .editable-submit', function(){
-  //   $('.edit').show();
-  // })        
-//ajax emulation. Type "err" to see error message
-// $.mockjax({
-//   url: '/post',
-//   responseTime: 100,
-//   response: function(settings) {
-//     if(settings.data.value == 'err') {
-//      this.status = 500;  
-//      this.responseText = 'Validation error!'; 
-//    } else {
-//      this.responseText = '';  
-//    }
-//  }
-// }); 
+  $(".add-score").click(function() {
+    $(this).children("i").toggleClass("fa-plus");
+    $(this).children("i").toggleClass("fa-spinner fa-spin");
+  })
+  $(".subtract-score").click(function() {
+    $(this).children("i").toggleClass("fa-minus");
+    $(this).children("i").toggleClass("fa-spinner fa-spin");
+  })
 
   // Update the rect's after the Ajax call succeeds
   $(document).ajaxSuccess(function(event, xhr, status, data) {
-    var rect = $("#day-"+data.id);
-    rect.attr("fill",data.range_color);
-    rect.attr("data-score",data.score);
+    var $icon = $("form#goal-"+data.goal_id+"-form i.fa-spinner");
+    $icon.removeClass("fa-spinner fa-spin");
+
+    if($icon.parent().hasClass("add-score")) {
+      $icon.addClass("fa-plus");
+    } else {
+      $icon.addClass("fa-minus");
+    }
+
+    var $rect = $("#day-"+data.id);
+    $rect.attr("fill",data.range_color);
+    $rect.attr("data-score",data.score);
   })
 
-  // var $lastFocusRect;
-  // $("rect").click(function() {
-  //   if(typeof $lastFocusRect !== 'undefined') {$lastFocusRect.attr("class","results-rect")};
-  //   $(this).attr("class","results-rect focus-rect");
-  //   $lastFocusRect = $(this);
-  //   var selectorId = "#"+$(this).attr("data-g-id")+"-day-selector";
-  //   $(selectorId).val($(this).attr("data-id"));
-  // })
+  function focusRect($selector) {
+    $("rect[data-gid="+$selector.data("gid")+"]").attr("class","results-rect");
+    $("rect[data-id="+$selector.val()+"]").attr("class","results-rect focus-rect");
+  }
 
-function focusRect($selector) {
-  $("rect[data-gid="+$selector.data("gid")+"]").attr("class","results-rect");
-  $("rect[data-id="+$selector.val()+"]").attr("class","results-rect focus-rect");
-}
+  $("rect").click(function() {
+    var $selectorId = $(".day-selector[data-gid="+$(this).attr("data-gid")+"]")
+    $($selectorId).val($(this).attr("data-id"));
+    focusRect($selectorId);
+  })
 
-$("rect").click(function() {
-  var $selectorId = $(".day-selector[data-gid="+$(this).attr("data-gid")+"]")
-  $($selectorId).val($(this).attr("data-id"));
-  focusRect($selectorId);
-})
-
-$(".day-selector").change(function() {
-  focusRect($(this));
-})
+  $(".day-selector").change(function() {
+    focusRect($(this));
+  })
 
 // Select the first Rect of each goal on load
 $.each($(".day-selector"), function() {

@@ -14,9 +14,9 @@ class GoalsController < ApplicationController
   def update_day
     @day = Day.find(params[:day_id])
 
-    if(params[:commit]=="+")
+    if(params[:button]=="add")
       @day.add_score
-    elsif(params[:commit]=="-")
+    elsif(params[:button]=="subtract")
       @day.subtract_score
     end
 
