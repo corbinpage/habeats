@@ -8,6 +8,31 @@ class Goal < ActiveRecord::Base
     goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
   end
 
+  # def self.get_display_progress
+  #   goals = Goal.all.order(id: :asc)
+
+  #   goals.each do |g|
+  #     goal_obj = Goal.new(g)
+  #     goal_obj.initialize_days
+  #     goal_obj.save
+  #   end
+
+  #   count_back.map do |i| 
+  #     Day.create_empty(Date.today - 95 + i)
+  #   end
+
+  #   goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
+
+
+  #   def self.generate_display_days
+  #     count_back = (0..95).to_a
+  #     count_back.map do |i| 
+  #       Day.create_empty(Date.today - 95 + i)
+  #     end
+  #   end
+
+  # end
+
   def add_today
     if self.days.where(date: Date.today).empty?
       self.add_date(Date.today)
