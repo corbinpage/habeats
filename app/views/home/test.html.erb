@@ -1,0 +1,29 @@
+
+<section class="bg-light-gray">
+
+  <script src="https://appswest.princetonblue.net:8443/suite/tempo/tempo.nocache.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script>
+  /* This function dynamically inserts an <appian-task> tag into the page with the user-specified taskId */
+  function addTask() {
+    var taskId = $("#new-task").val();
+    if (taskId) {
+      $('<appian-task />').attr("taskId", taskId).on("submit", handleSubmit).appendTo("#taskContent");
+    }
+  }
+
+  /* This function is called by the submit event listener */
+  function handleSubmit() {
+    alert("The task has been submitted!");
+  }
+  </script>
+
+  <div class="container">
+    <div class="row">
+      <div id="inputs">
+        <input id="new-task" /><button onclick="return addTask();">New Task</button>
+      </div>
+      <div id="taskContent"></div>
+    </div>
+  </div>
+</section>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411220837) do
+ActiveRecord::Schema.define(version: 20150611025327) do
 
   create_table "days", force: true do |t|
     t.date     "date"
@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(version: 20150411220837) do
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"
+
+  create_table "progresses", force: true do |t|
+    t.date     "date"
+    t.integer  "score"
+    t.integer  "dofw"
+    t.integer  "week_num"
+    t.integer  "range_value"
+    t.string   "range_color"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "goal_id"
+  end
+
+  add_index "progresses", ["goal_id"], name: "index_progresses_on_goal_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
