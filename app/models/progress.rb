@@ -6,13 +6,29 @@ class Progress < ActiveRecord::Base
   @@blue_range_colors = ["#eee","#9FC1F8","#4587F6","#376BC3","#214177"]
   @@green_range_colors = ["#eee","#d6e685","#8cc665","#44a340","#1e6823"]
 
-  def self.create(date_val, score=0)
-    progress_obj = Progress.new
+  def self.mark(goal_id, date_val, action)
+    progress_obj = Progress.where('goal_id = :goal_id AND date = :date',
+                                  {goal_id: goal_id, date: date_val})
+    progress_obj = progress_obj.empty? ? Progress.create(goal_id, date_val) : progress_obj[0]
+    progress_obj.process_action(action)
+
+    progress_obj      
+  end
+
+  def self.create(goal_id, date_val, score=0)
+    progress_obj = Progress.new(goal_id: goal_id, score: score)
     progress_obj.set_date(date_val)
-    progress_obj.score = score
     progress_obj.set_range
 
     progress_obj  
+  end
+
+  def process_action(action_txt)
+    if(action_txt=="add")
+      self.add_score
+    elsif(action_txt=="subtract")
+      self.subtract_score
+    end
   end
 
   def add_score
@@ -48,6 +64,13 @@ class Progress < ActiveRecord::Base
     self.date = date_val
     self.dofw = (self.date.wday == 0 ? 7 : self.date.wday)
     self.week_num = (self.date.year.to_s + self.date.cweek.to_s.rjust(2,"0")).to_i
+  end
+
+  def self.generate_display_days
+    count_back = (0..95).to_a
+    count_back.map do |i| 
+      Day.create_empty(Date.today - 95 + i)
+    end
   end
 
 end

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   
   def index
     @goals = Goal.get_display
+    @empty_days = Progress.generate_display_days
   end
   
 end

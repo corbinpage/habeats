@@ -15,6 +15,14 @@ class Day < ActiveRecord::Base
     day_obj  
   end
 
+  def self.create_empty(date_val)
+    day_obj = Day.new(date: date_val)
+    day_obj.dofw = (day_obj.date.wday == 0 ? 7 : day_obj.date.wday)
+    day_obj.week_num = (day_obj.date.year.to_s + day_obj.date.cweek.to_s.rjust(2,"0")).to_i
+
+    day_obj  
+  end
+
   def add_score
     self.score+=1
     set_range

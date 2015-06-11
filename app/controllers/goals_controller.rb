@@ -20,6 +20,9 @@ class GoalsController < ApplicationController
       @day.subtract_score
     end
 
+    @progress = Progress.mark(@day.goal_id, @day.date, params[:button])
+    @progress.save
+
     respond_to do |format|
       if @day.save
         format.json   { render json: @day, status: :created }
