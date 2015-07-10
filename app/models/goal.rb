@@ -60,7 +60,7 @@ class Goal < ActiveRecord::Base
   def initialize_progresses
     count_back = (0..95).to_a
     self.progresses = count_back.map do |i| 
-      Progress.create(self.id,Date.today - 95 + i)
+      Progress.create(self.id,Date.today - 95 + i,rand(10))
     end
   end
 
