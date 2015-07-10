@@ -8,7 +8,8 @@ class HomeController < ApplicationController
 
   def index2
     @goals = Goal.get_display
-    @empty_days = Progress.generate_display_days
+    @goals_progress = Goal.get_display_progress
+    puts @goals_progress.first.progresses.inspect
   end
 
 end

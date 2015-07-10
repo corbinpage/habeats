@@ -1,6 +1,7 @@
 class Goal < ActiveRecord::Base
   belongs_to :users
   has_many :days
+  has_many :progresses
   # attr_protected 
 
   def self.get_display
@@ -8,30 +9,31 @@ class Goal < ActiveRecord::Base
     goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
   end
 
-  # def self.get_display_progress
-  #   goals = Goal.all.order(id: :asc)
+  def self.get_display_progress
+    goals = Goal.all.order(id: :asc)
 
-  #   goals.each do |g|
-  #     goal_obj = Goal.new(g)
-  #     goal_obj.initialize_days
-  #     goal_obj.save
-  #   end
+    goals.each do |g|
+      count_back = (0..95).to_a
+      progress_dates = g.progresses.map{|p| p.date}
+      g.progresses = count_back.map do |i|
+        match_date = Date.today - 95 + i
+        match_index = progress_dates.index(match_date)
+        if match_index
+          g.progresses[match_index]
+        else
+          Progress.create(g.id,match_date)
+        end
+      end
+    end
+  end
 
-  #   count_back.map do |i| 
-  #     Day.create_empty(Date.today - 95 + i)
-  #   end
 
-  #   goals.collect! {|g| g.days = g.days.chronologically.limit(90); g}
-
-
-  #   def self.generate_display_days
-  #     count_back = (0..95).to_a
-  #     count_back.map do |i| 
-  #       Day.create_empty(Date.today - 95 + i)
-  #     end
-  #   end
-
-  # end
+  def self.generate_display_days
+    count_back = (0..95).to_a
+    count_back.map do |i| 
+      Day.create_empty(Date.today - 95 + i)
+    end
+  end
 
   def add_today
     if self.days.where(date: Date.today).empty?
@@ -52,6 +54,13 @@ class Goal < ActiveRecord::Base
     count_back = (0..95).to_a
     self.days = count_back.map do |i| 
       Day.create(Date.today - 95 + i)
+    end
+  end
+
+  def initialize_progresses
+    count_back = (0..95).to_a
+    self.progresses = count_back.map do |i| 
+      Progress.create(self.id,Date.today - 95 + i)
     end
   end
 

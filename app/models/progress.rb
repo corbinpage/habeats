@@ -1,5 +1,5 @@
 class Progress < ActiveRecord::Base
-  belongs_to :days
+  belongs_to :goals
   # attr_protected
   # scope :chronologically, -> { order(date: :desc) } 
 
