@@ -17,7 +17,7 @@ goals = [{name: "Workout",  category: "Health", theme: "habeats-blue", user_id: 
 
 goals.each do |g|
   goal_obj = Goal.new(g)
-  goal_obj.initialize_days
   goal_obj.initialize_progresses
+  # goal_obj.initialize_empty_progresses
   goal_obj.save
 end

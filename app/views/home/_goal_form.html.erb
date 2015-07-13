@@ -5,7 +5,7 @@
         <a class="editable-title" data-pk="<%=g.id%>" data-url="<%=update_title_path(g.id)%>"><%= g.name %></a>
       </div>
     </div>
-    <%= form_tag('/goals/'+g.id.to_s+'/update_day', remote: true, class: "day-form", id: "goal-"+g.id.to_s+"-form") do %>
+    <%= form_tag('/goals/'+g.id.to_s+'/update_progress', remote: true, class: "day-form", id: "goal-"+g.id.to_s+"-form") do %>
     <div class="form-group">
       <div class="day-btn-group center-block">
         <%= button_tag(value: "add", type: "submit", class: "btn btn-success btn-lg change-score add-score") do %>
@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="form-group">
-      <% date_month = g.days.map {|d| [d.date.strftime("%m-%d-%Y"), d.id]} %>
-      <%= select_tag(:day_id, options_for_select(date_month, g.days.first.id), class: "center-block day-selector form-control", id: g.id.to_s+"-day-selector", data: {gid: g.id.to_s}) %>
+      <% date_month = g.progresses.map {|p| p.date.strftime("%m-%d-%Y")}.reverse %>
+      <%= select_tag(:date, options_for_select(date_month, g.progresses.first.date), class: "center-block day-selector form-control", id: g.id.to_s+"-day-selector", data: {gid: g.id.to_s}) %>
     </div>
     <% end %>
   </div>

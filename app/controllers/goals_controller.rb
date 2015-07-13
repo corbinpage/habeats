@@ -11,23 +11,15 @@ class GoalsController < ApplicationController
     redirect_to root_path
   end
 
-  def update_day
-    @day = Day.find(params[:day_id])
-
-    if(params[:button]=="add")
-      @day.add_score
-    elsif(params[:button]=="subtract")
-      @day.subtract_score
-    end
-
-    @progress = Progress.mark(@day.goal_id, @day.date, params[:button])
+  def update_progress
+    @progress = Progress.mark(params[:id], params[:date], params[:button])
     @progress.save
 
     respond_to do |format|
-      if @day.save
-        format.json   { render json: @day, status: :created }
+      if @progress.save
+        format.json   { render json: @progress, status: :created }
       else
-        format.json { render json: @day, status: :unprocessable_entity }
+        format.json { render json: @progress, status: :unprocessable_entity }
       end
     end
   end

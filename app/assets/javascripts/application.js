@@ -52,29 +52,38 @@ $(function() {
       $icon.addClass("fa-minus");
     }
 
-    var $rect = $("#day-"+data.id);
+    // ToDo: Need to get the add and minus buttons to work
+    // console.log(data.date);
+    // var rectDate = Date.parse(data.date);
+    // console.log(rectDate);
+    // var dateString = rectDate.getMonth()+"-"+rectDate.getDate()+"-"+rectDate.getFullYear()
+    // console.log(dateString);
+    
+    // var $rect = $("rect[data-date="+dateString+"]");
+    var $rect;
     $rect.attr("fill",data.range_color);
     $rect.attr("data-score",data.score);
   })
 
-  function focusRect($selector) {
-    $("rect[data-gid="+$selector.data("gid")+"]").attr("class","results-rect");
-    $("rect[data-id="+$selector.val()+"]").attr("class","results-rect focus-rect");
+  function focusRect($rect) {
+    // Using .attr() instead of .addClass() b/c it's a SVG
+    $("rect[data-gid="+$rect.data("gid")+"]").attr("class", "results-rect");
+    $rect.attr("class", "results-rect focus-rect");
   }
 
   $("rect").click(function() {
-    var $selectorId = $(".day-selector[data-gid="+$(this).attr("data-gid")+"]")
-    $($selectorId).val($(this).attr("data-id"));
-    focusRect($selectorId);
+    var $selectorId = $(".day-selector[data-gid="+$(this).data("gid")+"]")
+    $($selectorId).val($(this).data("date"));
+    focusRect($(this));
   })
 
   $(".day-selector").change(function() {
-    focusRect($(this));
+    focusRect($("rect[data-date="+$(this).val()+"]"));
   })
 
 // Select the first Rect of each goal on load
 $.each($(".day-selector"), function() {
-  focusRect($(this));
+  focusRect($("rect[data-date="+$(this).val()+"]"));
 })
 
 

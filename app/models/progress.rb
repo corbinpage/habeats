@@ -3,8 +3,8 @@ class Progress < ActiveRecord::Base
   # attr_protected
   # scope :chronologically, -> { order(date: :desc) } 
 
-  @@blue_range_colors = ["#eee","#9FC1F8","#4587F6","#376BC3","#214177"]
-  @@green_range_colors = ["#eee","#d6e685","#8cc665","#44a340","#1e6823"]
+  @@blue_range_colors = ["#EEEEEE","#9FC1F8","#4587F6","#376BC3","#214177"]
+  @@green_range_colors = ["#EEEEEE","#D6E685","#8CC665","#44A340","#1E6823"]
 
   def self.mark(goal_id, date_val, action)
     progress_obj = Progress.where('goal_id = :goal_id AND date = :date',
