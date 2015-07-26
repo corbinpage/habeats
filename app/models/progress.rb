@@ -61,7 +61,7 @@ class Progress < ActiveRecord::Base
   end
 
   def set_date(date_val)
-    self.date = date_val
+    self.date = Date.strptime(date_val, '%m-%d-%Y') 
     self.dofw = (self.date.wday == 0 ? 7 : self.date.wday)
     self.week_num = (self.date.year.to_s + self.date.cweek.to_s.rjust(2,"0")).to_i
   end

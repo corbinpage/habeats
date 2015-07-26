@@ -52,15 +52,10 @@ $(function() {
       $icon.addClass("fa-minus");
     }
 
-    // ToDo: Need to get the add and minus buttons to work
-    // console.log(data.date);
-    // var rectDate = Date.parse(data.date);
-    // console.log(rectDate);
-    // var dateString = rectDate.getMonth()+"-"+rectDate.getDate()+"-"+rectDate.getFullYear()
-    // console.log(dateString);
-    
-    // var $rect = $("rect[data-date="+dateString+"]");
-    var $rect;
+    var tempDate = new Date(data.date);
+    var dateString=('0'+(1+tempDate.getMonth())).substr(-2,2)+'-'+('0'+(1+tempDate.getDate())).substr(-2,2)+'-'+tempDate.getFullYear();
+    var $rect = $("#goal-"+data.goal_id+" rect[data-date="+dateString+"]");
+
     $rect.attr("fill",data.range_color);
     $rect.attr("data-score",data.score);
   })
