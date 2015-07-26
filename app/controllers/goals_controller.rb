@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(user_id: 2,
                      name: "New Goal",
                      category: "New Category",
-                     theme: "habeats-blue")
+                     theme: "streaky-blue")
     @goal.initialize_days
     @goal.save
 
@@ -12,7 +12,9 @@ class GoalsController < ApplicationController
   end
 
   def update_progress
-    @progress = Progress.mark(params[:id], params[:date], params[:button])
+    @progress = Progress.mark(params[:id],
+                              Date.strptime(params[:date], '%m-%d-%Y'),
+                              params[:button])
     @progress.save
 
     respond_to do |format|

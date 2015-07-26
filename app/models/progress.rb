@@ -6,18 +6,18 @@ class Progress < ActiveRecord::Base
   @@blue_range_colors = ["#EEEEEE","#9FC1F8","#4587F6","#376BC3","#214177"]
   @@green_range_colors = ["#EEEEEE","#D6E685","#8CC665","#44A340","#1E6823"]
 
-  def self.mark(goal_id, date_val, action)
+  def self.mark(goal_id, date, action)
     progress_obj = Progress.where('goal_id = :goal_id AND date = :date',
-                                  {goal_id: goal_id, date: date_val})
-    progress_obj = progress_obj.empty? ? Progress.create(goal_id, date_val) : progress_obj[0]
+                                  {goal_id: goal_id, date: date})
+    progress_obj = progress_obj.empty? ? Progress.create(goal_id, date) : progress_obj[0]
     progress_obj.process_action(action)
 
     progress_obj      
   end
 
-  def self.create(goal_id, date_val, score=0)
+  def self.create(goal_id, date, score=0)
     progress_obj = Progress.new(goal_id: goal_id, score: score)
-    progress_obj.set_date(date_val)
+    progress_obj.set_date(date)
     progress_obj.set_range
 
     progress_obj  
@@ -60,8 +60,8 @@ class Progress < ActiveRecord::Base
     self.range_color = @@blue_range_colors[self.range_value]
   end
 
-  def set_date(date_val)
-    self.date = Date.strptime(date_val, '%m-%d-%Y') 
+  def set_date(date)
+    self.date = date
     self.dofw = (self.date.wday == 0 ? 7 : self.date.wday)
     self.week_num = (self.date.year.to_s + self.date.cweek.to_s.rjust(2,"0")).to_i
   end
