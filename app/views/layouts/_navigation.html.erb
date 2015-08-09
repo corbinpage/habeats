@@ -10,12 +10,11 @@
         </button>
         <span class="fa-stack fa-2x pull-left">
           <!-- <i class="fa fa-circle fa-stack-2x text-primary"></i> -->
-          <a class="consent-button" href="<% user_signed_in? ? portal_path : root_path %>">
+          <a class="consent-button" href="<%= root_path %>">
             <i class="fa fa-star-o fa-stack-2x"></i>
           </a>
         </span>
-        <a class="navbar-brand page-scroll" href="
-<% user_signed_in? ? portal_path : root_path %>"> <%= ENV['company_name'] %></a>
+        <a class="navbar-brand page-scroll" href="<%= root_path %>"><%= ENV['company_name'] %></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->

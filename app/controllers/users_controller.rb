@@ -18,14 +18,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def portal
-    @consents = Consent.where(user_id: current_user.id)
-  end
-
   private
 
   def user_params
-    params.require(:user).permit(:internal_bio)
+    params.require(:user)
   end
   
 end

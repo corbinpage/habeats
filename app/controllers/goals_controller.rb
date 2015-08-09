@@ -1,11 +1,11 @@
 class GoalsController < ApplicationController
 
   def create
-    @goal = Goal.new(user_id: 2,
+    @goal = Goal.new(user_id: current_user.id,
                      name: "New Goal",
                      category: "New Category",
                      theme: "streaky-blue")
-    @goal.initialize_days
+    @goal.initialize_empty_progresses
     @goal.save
 
     redirect_to root_path

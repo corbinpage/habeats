@@ -1,10 +1,9 @@
 class Goal < ActiveRecord::Base
   belongs_to :users
   has_many :progresses
-  # attr_protected
 
-  def self.get_display_progress
-    goals = Goal.all.order(id: :asc)
+  def self.get_display_progress(user)
+    goals = user.goals.order(id: :asc)
 
     goals.each do |g|
       count_back = (0..95).to_a

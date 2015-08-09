@@ -2,8 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_sign_up_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
 
-  skip_before_filter :only_proofreaders!, only: [:edit, :update]
-
   # GET /resource/sign_up
   # def new
   #   super
@@ -50,16 +48,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    procedures_path(resource)
+    root_path
   end
 
   def after_update_path_for(resource)
-    procedures_path(resource)
+    root_path
   end
 
-  # TODO: This could be used for a bad credit card or no credits, left this month
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

@@ -24,7 +24,6 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require ./bootstrap-editable.min.js
-//= require ./home.js
 
 
 $(function() {

@@ -1,5 +1,4 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_filter :only_proofreaders!, only: [:new, :create, :destroy]
   # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -13,15 +12,20 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    sign_out(current_user)
+    session[:user_id] = nil
+  end
 
   protected
 
   def after_sign_in_path_for(resource)
-    procedures_path(resource)
+    root_path
   end
+
+  # def after_sign_out_path_for(resource)
+  #   root_path
+  # end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params

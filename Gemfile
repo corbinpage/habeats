@@ -10,7 +10,7 @@ gem 'pg'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # User authentication
 gem 'devise'
-# Hide secret keys, please request a copy of config/application.yml
+# User authentication instead of devise
 gem 'figaro', '>= 1.0.0.rc1'
 # Allow files to be attached, not currenly being used
 # gem "paperclip"
