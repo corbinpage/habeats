@@ -13,21 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150611025327) do
 
-  create_table "days", force: true do |t|
-    t.date     "date"
-    t.integer  "score"
-    t.integer  "dofw"
-    t.integer  "week_num"
-    t.integer  "range_value"
-    t.string   "range_color"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "goal_id"
-  end
-
-  add_index "days", ["goal_id"], name: "index_days_on_goal_id"
-
   create_table "goals", force: true do |t|
     t.string   "name"
     t.string   "category"
@@ -69,13 +54,9 @@ ActiveRecord::Schema.define(version: 20150611025327) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "telephone"
-    t.text     "internal_bio"
-    t.integer  "role",                   default: 0
-    t.integer  "credits",                default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["role"], name: "index_users_on_role"
 
 end

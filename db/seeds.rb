@@ -20,14 +20,15 @@ new_goal.progresses = day_hash.map do |d|
 end
 new_goal.save!
 
-# goals = [{name: "Workout",  category: "Health", theme: "habeats-blue", user_id: 1}, 
-#  {name: "Eating",  category: "Health", theme: "habeats-green", user_id: 1}, 
-#  {name: "Code",  category: "Work", theme: "habeats-yellow", user_id: 1} 
-# ]
+goals = [
+ # {name: "Workout",  category: "Health", theme: "habeats-blue", user_id: 1}, 
+ {name: "Eating",  category: "Health", theme: "habeats-green", user_id: 1}, 
+ {name: "Code",  category: "Work", theme: "habeats-yellow", user_id: 1} 
+]
 
-# goals.each do |g|
-#   goal_obj = Goal.new(g)
-#   goal_obj.initialize_progresses
-#   # goal_obj.initialize_empty_progresses
-#   goal_obj.save
-# end
+goals.each do |g|
+  goal_obj = Goal.new(g)
+  goal_obj.initialize_progresses
+  # goal_obj.initialize_empty_progresses
+  goal_obj.save
+end

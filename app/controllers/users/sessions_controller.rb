@@ -12,10 +12,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  def destroy
-    sign_out(current_user)
-    session[:user_id] = nil
-  end
+  # def destroy
+  #   sign_out(current_user)
+  #   session[:user_id] = nil
+  # end
 
   protected
 
@@ -23,9 +23,9 @@ class Users::SessionsController < Devise::SessionsController
     root_path
   end
 
-  # def after_sign_out_path_for(resource)
-  #   root_path
-  # end
+  def after_sign_out_path_for(resource)
+    root_path
+  end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params
